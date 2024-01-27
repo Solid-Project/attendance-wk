@@ -19,7 +19,7 @@ class Siswa extends RestController
 
 			$this->response([
 				'status'    => true,
-				'result'    => $getAllSiswa->row(),
+				'result'    => $getAllSiswa->result(),
 				'total'     => $getAllSiswa->num_rows(),
 				'message'   => 'ON GOING...'
 			], 200);
