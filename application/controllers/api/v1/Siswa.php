@@ -72,4 +72,34 @@ class Siswa extends RestController
 			], 200);
 		}
 	}
+
+	public function index_put()
+	{
+		try {
+			$data = $this->put();
+
+			if (count($data) > 1) {
+				$updateStudent = $this->M_siswa->update($data, ['id' => $data['id']]);
+
+				if (!$updateStudent) {
+					return $this->response([
+						'status' => false,
+						'message' => 'Gagal merubah data siswa'
+					]);
+				}
+
+				return $this->response([
+					'status' => true,
+					'message' => 'Berhasil merubah data siswa'
+				]);
+			}
+		} catch (Exception $th) {
+			return $this->response([
+				'status'    => true,
+				'result'    => [],
+				'total'     => 0,
+				'message'   => $th->getMessage()
+			], 200);
+		}
+	}
 }
